@@ -1,0 +1,232 @@
+/* ==============================================================
+   css/style.css
+   Custom CSS for Movie Ticket Booking System
+   ============================================================== */
+
+/* Page sticky footer structure */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #0f172a;
+    color: #e2e8f0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* Movie Cards */
+.movie-card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.movie-poster-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 140%; /* 1:1.4 aspect ratio for movie posters */
+    background-color: #0b1120;
+    overflow: hidden;
+}
+
+.movie-poster-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.badge-genre {
+    background-color: #3b82f6;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Auth Cards (Login & Register) */
+.auth-card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.auth-card .form-control {
+    background-color: #0f172a;
+    border: 1px solid #475569;
+    color: #f8fafc;
+}
+
+.auth-card .form-control:focus {
+    background-color: #0f172a;
+    border-color: #f59e0b;
+    color: #ffffff;
+    box-shadow: 0 0 0 0.2rem rgba(245, 158, 11, 0.25);
+}
+
+/* Interactive Cinema Seat Selection */
+.cinema-screen {
+    width: 80%;
+    max-width: 500px;
+    height: 14px;
+    background: linear-gradient(to bottom, #94a3b8, #334155);
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+    margin: 20px auto 40px auto;
+    position: relative;
+    text-align: center;
+}
+
+.cinema-screen::after {
+    content: "SCREEN THIS WAY";
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 22px;
+    left: 0;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.seat-grid {
+    display: inline-block;
+    padding: 15px;
+    background-color: #1e293b;
+    border-radius: 8px;
+    border: 1px solid #334155;
+}
+
+.seat-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.row-label {
+    width: 25px;
+    font-weight: bold;
+    color: #94a3b8;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.seat {
+    width: 34px;
+    height: 32px;
+    margin: 3px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.15s ease-in-out;
+}
+
+/* Seat States */
+.seat.available {
+    background-color: #334155;
+    color: #f1f5f9;
+    border: 1px solid #475569;
+}
+
+.seat.available:hover {
+    background-color: #0ea5e9;
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+.seat.selected {
+    background-color: #22c55e !important;
+    color: #ffffff !important;
+    border-color: #16a34a !important;
+    transform: scale(1.08);
+}
+
+.seat.booked {
+    background-color: #ef4444 !important;
+    color: #ffffff !important;
+    border-color: #dc2626 !important;
+    cursor: not-allowed !important;
+    opacity: 0.55;
+}
+
+/* Seat Legend Indicator */
+.seat-legend-item {
+    display: inline-flex;
+    align-items: center;
+    margin-right: 15px;
+    font-size: 0.85rem;
+}
+
+.seat-legend-box {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    margin-right: 6px;
+    display: inline-block;
+}
+
+/* Printable Ticket Styling */
+.ticket-container {
+    background-color: #ffffff;
+    color: #1e293b;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 20px auto;
+    border: 2px dashed #cbd5e1;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.ticket-header {
+    background-color: #0f172a;
+    color: #f8fafc;
+    padding: 20px;
+}
+
+.ticket-body {
+    padding: 24px;
+}
+
+.ticket-divider {
+    border-top: 2px dashed #94a3b8;
+    margin: 20px 0;
+    position: relative;
+}
+
+@media print {
+    body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
+    nav, footer, .btn-no-print {
+        display: none !important;
+    }
+    .ticket-container {
+        box-shadow: none !important;
+        border: 2px solid #000000 !important;
+        margin: 0 auto !important;
+    }
+}
